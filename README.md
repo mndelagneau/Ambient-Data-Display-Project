@@ -1,4 +1,4 @@
 # Ambient Data Display Project
  
 Resort Weather Report Data Display
-By: Maia Delagneau
+By: Gabe Longoria and Maia Delagneau
