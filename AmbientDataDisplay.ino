@@ -16,7 +16,6 @@ int servoPosition2;
 int ledBrightness;
 int uvLevel[4];
 String cloudiness[4];
-int cloudinessValue[4];
 
 
 void setup() {
