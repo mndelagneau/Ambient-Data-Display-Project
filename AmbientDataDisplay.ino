@@ -7,8 +7,8 @@
 #define N_LEDS 39
 #define BUILT_IN_LED_PIN_SUNSCEEN 13
 #define BUILT_IN_LED_PIN_HAT 12
-#define BUILT_IN_LED_PIN_UMBRELLA 11
-#define BUILT_IN_LED_PIN_HOUSE 10
+#define BUILT_IN_LED_PIN_UMBRELLA 7
+#define BUILT_IN_LED_PIN_HOUSE 4
 
 Servo servo1;
 Servo servo2;
