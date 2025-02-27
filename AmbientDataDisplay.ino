@@ -22,7 +22,8 @@ int cloudinessValue[4];
 void setup() {
   
   myservo.attach(9);
-  servoPosition = 0;
+  servoPosition1 = 0;
+  servoPosition2 = 180;
 
   cloudiness = ["Mostly Cloudy", "Sunny", "Partly Cloudy", "Cloudy", "Sunny"];
 
@@ -36,16 +37,16 @@ void loop() {
     readPot(0);
   }
   else if (potPosition >= 205 && potPosition < 410) {
-    readPot(0);
+    readPot(1);
   }
   else if (potPosition >= 410 && potPosition < 615) {
-    readPot(0);
+    readPot(2);
   }
   else if (potPosition >= 615 && potPosition < 820) {
-    readPot(0);
+    readPot(3);
   }
   else {
-    
+    readPot(4);
   }
 
 }
