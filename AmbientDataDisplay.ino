@@ -31,8 +31,8 @@ void setup() {
   
   strip.begin();
   strip.show();
-  servo1.attach(9);
-  servo2.attach(10);
+  servo1.attach(8);
+  servo2.attach(9);
   servoPosition1 = 0;
   servoPosition2 = 180;
 
