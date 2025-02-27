@@ -60,30 +60,31 @@ void loop() {
 void readPot(int day) { 
 
   if (cloudiness[day] == "Cloudy") {
-        servoPosition1 = 180;
-        servoPosition2 = 0;
-        setStripBrightness(255, 247, 165, 35);
-      }
-      else if (cloudiness[day] == "Mostly Cloudy") {
-        servoPosition1 = 135;
-        servoPosition2 = 45;
-        setStripBrightness(255, 222, 85, 75);
-      }
-      else if (cloudiness[day] == "Partly Cloudy") {
-        servoPosition1 = 90;
-        servoPosition2 = 135;
-        setStripBrightness(255, 213, 0, 100);
-      }
-      else {
-        servoPosition1 = 0;
-        servoPosition2 = 180;
-        pulseColor(255, 0, 0, 10);
-      }
-      servo1.write(servoPosition1);
-      servo2.write(servoPosition2);   
-  } 
+    servoPosition1 = 180;
+    servoPosition2 = 0;
+    setStripBrightness(255, 247, 165, 35);
+  }
+  else if (cloudiness[day] == "Mostly Cloudy") {
+    servoPosition1 = 135;
+    servoPosition2 = 45;
+    setStripBrightness(255, 222, 85, 75);
+  }
+  else if (cloudiness[day] == "Partly Cloudy") {
+    servoPosition1 = 90;
+    servoPosition2 = 135;
+    setStripBrightness(255, 213, 0, 100);
+  }
+  else {
+    servoPosition1 = 0;
+    servoPosition2 = 180;
+    pulseColor(255, 0, 0, 10);
+  }
+  servo1.write(servoPosition1);
+  servo2.write(servoPosition2);   
+} 
 
 void pulseColor(uint8_t r, uint8_t g, uint8_t b, int delayTime) {
+  
   // Fade in (brightness from 0 to 255)
   for (int brightness = 0; brightness <= 100; brightness += 5) {
     setStripBrightness(r, g, b, brightness);
