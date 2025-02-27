@@ -89,7 +89,38 @@ void readPot(int day) {
     pulseColor(255, 0, 0, 10);
   }
   servo1.write(servoPosition1);
-  servo2.write(servoPosition2);   
+  servo2.write(servoPosition2);
+
+  if (uvLevel[day] <= 2) {
+    digitalWrite(BUILT_IN_LED_PIN_SUNSCREEN, LOW);
+    digitalWrite(BUILT_IN_LED_PIN_HAT, LOW);
+    digitalWrite(BUILT_IN_LED_PIN_UMBRELLA, LOW);
+    digitalWrite(BUILT_IN_LED_PIN_HOUSE, LOW);
+  }
+  else if (uvLevel[day] > 2 && uvLevel[day] <= 5) {
+    digitalWrite(BUILT_IN_LED_PIN_SUNSCREEN, HIGH);
+    digitalWrite(BUILT_IN_LED_PIN_HAT, LOW);
+    digitalWrite(BUILT_IN_LED_PIN_UMBRELLA, LOW);
+    digitalWrite(BUILT_IN_LED_PIN_HOUSE, LOW);
+  }
+  else if (uvLevel[day] > 5 && uvLevel[day] <= 7) {
+    digitalWrite(BUILT_IN_LED_PIN_SUNSCREEN, HIGH);
+    digitalWrite(BUILT_IN_LED_PIN_HAT, HIGH);
+    digitalWrite(BUILT_IN_LED_PIN_UMBRELLA, LOW);
+    digitalWrite(BUILT_IN_LED_PIN_HOUSE, LOW);
+  }
+  else if (uvLevel[day] > 7 && uvLevel[day] <= 10) {
+    digitalWrite(BUILT_IN_LED_PIN_SUNSCREEN, HIGH);
+    digitalWrite(BUILT_IN_LED_PIN_HAT, HIGH);
+    digitalWrite(BUILT_IN_LED_PIN_UMBRELLA, HIGH);
+    digitalWrite(BUILT_IN_LED_PIN_HOUSE, LOW);
+  }
+  else {
+    digitalWrite(BUILT_IN_LED_PIN_SUNSCREEN, HIGH);
+    digitalWrite(BUILT_IN_LED_PIN_HAT, HIGH);
+    digitalWrite(BUILT_IN_LED_PIN_UMBRELLA, HIGH);
+    digitalWrite(BUILT_IN_LED_PIN_HOUSE, HIGH);
+  }
 } 
 
 void pulseColor(uint8_t r, uint8_t g, uint8_t b, int delayTime) {
