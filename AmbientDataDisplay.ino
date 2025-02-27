@@ -35,6 +35,11 @@ void setup() {
   servo2.attach(10);
   servoPosition1 = 0;
   servoPosition2 = 180;
+
+  pinMode(BUILT_IN_LED_PIN_SUNSCEEN, OUTPUT);
+  pinMode(BUILT_IN_LED_PIN_HAT, OUTPUT);
+  pinMode(BUILT_IN_LED_PIN_UMBRELLA, OUTPUT);
+  pinMode(BUILT_IN_LED_PIN_HOUSE, OUTPUT);
   
 }
 
