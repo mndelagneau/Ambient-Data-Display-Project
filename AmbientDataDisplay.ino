@@ -17,7 +17,7 @@ int potPosition;
 int servoPosition1; 
 int servoPosition2; 
 int ledBrightness;
-int uvLevel[5] = {6, 11, 4, 2, 9};
+int uvLevel[5] = {5, 11, 7, 2, 9};
 String cloudiness[5] = {"Mostly Cloudy", "Sunny", "Partly Cloudy", "Cloudy", "Sunny"};
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(N_LEDS, PIN, NEO_GRB + NEO_KHZ800);
@@ -28,10 +28,12 @@ void smoothServoMove(Servo &servo, int targetPosition);
 void readPot(int day);
 
 void setup() {
+
+  Serial.begin(9600);
   
   strip.begin();
   strip.show();
-  servo1.attach(8);
+  servo1.attach(3);
   servo2.attach(9);
   servoPosition1 = 0;
   servoPosition2 = 180;
@@ -47,21 +49,22 @@ void setup() {
 void loop() {
   
   potPosition = analogRead(A0);
+  Serial.println(potPosition);
 
-  if (potPosition < 205) {
-    readPot(0);
+  if (potPosition >= 100 && potPosition < 280) {
+    readPot(4);
   }
-  else if (potPosition >= 205 && potPosition < 410) {
-    readPot(1);
-  }
-  else if (potPosition >= 410 && potPosition < 615) {
-    readPot(2);
-  }
-  else if (potPosition >= 615 && potPosition < 820) {
+  else if (potPosition >= 300 && potPosition < 480) {
     readPot(3);
   }
-  else {
-    readPot(4);
+  else if (potPosition >= 500 && potPosition < 680) {
+    readPot(2);
+  }
+  else if (potPosition >= 700 && potPosition < 780) {
+    readPot(1);
+  }
+  else if (potPosition >= 800 && potPosition < 980){
+    readPot(0);
   }
 }
 
@@ -69,24 +72,20 @@ void loop() {
 void readPot(int day) { 
 
   if (cloudiness[day] == "Cloudy") {
-    servoPosition1 = 180;
-    servoPosition2 = 0;
-    setStripBrightness(255, 247, 165, 35);
+    servoPosition1 = 30;
+    servoPosition2 = 110;
   }
   else if (cloudiness[day] == "Mostly Cloudy") {
-    servoPosition1 = 135;
-    servoPosition2 = 45;
-    setStripBrightness(255, 222, 85, 75);
+    servoPosition1 = 20;
+    servoPosition2 = 60;
   }
   else if (cloudiness[day] == "Partly Cloudy") {
-    servoPosition1 = 90;
-    servoPosition2 = 135;
-    setStripBrightness(255, 213, 0, 100);
+    servoPosition1 = 150;
+    servoPosition2 = 140;
   }
   else {
-    servoPosition1 = 0;
-    servoPosition2 = 180;
-    pulseColor(255, 0, 0, 10);
+    servoPosition1 = 150;
+    servoPosition2 = 20;
   }
   servo1.write(servoPosition1);
   servo2.write(servoPosition2);
@@ -96,31 +95,38 @@ void readPot(int day) {
     digitalWrite(hat, LOW);
     digitalWrite(umbrella, LOW);
     digitalWrite(house, LOW);
+    setStripBrightness(255, 247, 165, 35);
   }
   else if (uvLevel[day] > 2 && uvLevel[day] <= 5) {
     digitalWrite(sunscreen, HIGH);
     digitalWrite(hat, LOW);
     digitalWrite(umbrella, LOW);
     digitalWrite(house, LOW);
+    setStripBrightness(255, 222, 85, 75);
   }
   else if (uvLevel[day] > 5 && uvLevel[day] <= 7) {
     digitalWrite(sunscreen, HIGH);
     digitalWrite(hat, HIGH);
     digitalWrite(umbrella, LOW);
     digitalWrite(house, LOW);
+    setStripBrightness(255, 196, 48, 75);
   }
   else if (uvLevel[day] > 7 && uvLevel[day] <= 10) {
     digitalWrite(sunscreen, HIGH);
     digitalWrite(hat, HIGH);
     digitalWrite(umbrella, HIGH);
     digitalWrite(house, LOW);
+    pulseColor(255, 85, 0, 85);
   }
   else {
     digitalWrite(sunscreen, HIGH);
     digitalWrite(hat, HIGH);
     digitalWrite(umbrella, HIGH);
     digitalWrite(house, HIGH);
+    pulseColor(255, 0, 0, 40);
   }
+
+  Serial.println(cloudiness[day]);
 } 
 
 void pulseColor(uint8_t r, uint8_t g, uint8_t b, int delayTime) {
