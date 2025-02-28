@@ -5,10 +5,10 @@
 #include <Servo.h>  
 #define PIN      6
 #define N_LEDS 39
-#define BUILT_IN_LED_PIN_SUNSCEEN 13
-#define BUILT_IN_LED_PIN_HAT 12
-#define BUILT_IN_LED_PIN_UMBRELLA 7
-#define BUILT_IN_LED_PIN_HOUSE 4
+int sunscreen = 13;
+int hat = 12;
+int umbrella = 7;
+int house = 4;
 
 Servo servo1;
 Servo servo2;
@@ -36,10 +36,10 @@ void setup() {
   servoPosition1 = 0;
   servoPosition2 = 180;
 
-  pinMode(BUILT_IN_LED_PIN_SUNSCEEN, OUTPUT);
-  pinMode(BUILT_IN_LED_PIN_HAT, OUTPUT);
-  pinMode(BUILT_IN_LED_PIN_UMBRELLA, OUTPUT);
-  pinMode(BUILT_IN_LED_PIN_HOUSE, OUTPUT);
+  pinMode(sunscreen, OUTPUT);
+  pinMode(hat, OUTPUT);
+  pinMode(umbrella, OUTPUT);
+  pinMode(house, OUTPUT);
   
 }
 
@@ -92,34 +92,34 @@ void readPot(int day) {
   servo2.write(servoPosition2);
 
   if (uvLevel[day] <= 2) {
-    digitalWrite(BUILT_IN_LED_PIN_SUNSCREEN, LOW);
-    digitalWrite(BUILT_IN_LED_PIN_HAT, LOW);
-    digitalWrite(BUILT_IN_LED_PIN_UMBRELLA, LOW);
-    digitalWrite(BUILT_IN_LED_PIN_HOUSE, LOW);
+    digitalWrite(sunscreen, LOW);
+    digitalWrite(hat, LOW);
+    digitalWrite(umbrella, LOW);
+    digitalWrite(house, LOW);
   }
   else if (uvLevel[day] > 2 && uvLevel[day] <= 5) {
-    digitalWrite(BUILT_IN_LED_PIN_SUNSCREEN, HIGH);
-    digitalWrite(BUILT_IN_LED_PIN_HAT, LOW);
-    digitalWrite(BUILT_IN_LED_PIN_UMBRELLA, LOW);
-    digitalWrite(BUILT_IN_LED_PIN_HOUSE, LOW);
+    digitalWrite(sunscreen, HIGH);
+    digitalWrite(hat, LOW);
+    digitalWrite(umbrella, LOW);
+    digitalWrite(house, LOW);
   }
   else if (uvLevel[day] > 5 && uvLevel[day] <= 7) {
-    digitalWrite(BUILT_IN_LED_PIN_SUNSCREEN, HIGH);
-    digitalWrite(BUILT_IN_LED_PIN_HAT, HIGH);
-    digitalWrite(BUILT_IN_LED_PIN_UMBRELLA, LOW);
-    digitalWrite(BUILT_IN_LED_PIN_HOUSE, LOW);
+    digitalWrite(sunscreen, HIGH);
+    digitalWrite(hat, HIGH);
+    digitalWrite(umbrella, LOW);
+    digitalWrite(house, LOW);
   }
   else if (uvLevel[day] > 7 && uvLevel[day] <= 10) {
-    digitalWrite(BUILT_IN_LED_PIN_SUNSCREEN, HIGH);
-    digitalWrite(BUILT_IN_LED_PIN_HAT, HIGH);
-    digitalWrite(BUILT_IN_LED_PIN_UMBRELLA, HIGH);
-    digitalWrite(BUILT_IN_LED_PIN_HOUSE, LOW);
+    digitalWrite(sunscreen, HIGH);
+    digitalWrite(hat, HIGH);
+    digitalWrite(umbrella, HIGH);
+    digitalWrite(house, LOW);
   }
   else {
-    digitalWrite(BUILT_IN_LED_PIN_SUNSCREEN, HIGH);
-    digitalWrite(BUILT_IN_LED_PIN_HAT, HIGH);
-    digitalWrite(BUILT_IN_LED_PIN_UMBRELLA, HIGH);
-    digitalWrite(BUILT_IN_LED_PIN_HOUSE, HIGH);
+    digitalWrite(sunscreen, HIGH);
+    digitalWrite(hat, HIGH);
+    digitalWrite(umbrella, HIGH);
+    digitalWrite(house, HIGH);
   }
 } 
 
